@@ -62,8 +62,35 @@
         }
 
         // Get and display parameters
-        document.getElementById('key1-value').textContent = getUrlParameter('key1');
-        document.getElementById('key2-value').textContent = getUrlParameter('key2');
+        const key1Value = getUrlParameter('key1');
+        const key2Value = getUrlParameter('key2');
+        document.getElementById('key1-value').textContent = key1Value || 'Not found';
+        document.getElementById('key2-value').textContent = key2Value || 'Not found';
+
+        // Insert JavaScript Tag
+        (function(a, b, c, d, e, f, g) {
+            e['ire_o'] = c;
+            e[c] = e[c] || function() {
+                (e[c].a = e[c].a || []).push(arguments);
+            };
+            f = d.createElement(b);
+            g = d.getElementsByTagName(b)[0];
+            f.async = 1;
+            f.src = a;
+            g.parentNode.insertBefore(f, g);
+        })(
+            'https://utt.impactcdn.com/A2788006-de3d-4011-a57c-c4737e79de0365535.js', // 替换为正确的 URL
+            'script',
+            'ire',
+            document,
+            window
+        );
+
+        // Pass the key1 and key2 values to the JavaScript tag
+        ire('identify', {
+            customerid: key1Value,  // Pass the extracted key1 value
+            customeremail: key2Value // Pass the extracted key2 value
+        });
     </script>
 </body>
 </html>
