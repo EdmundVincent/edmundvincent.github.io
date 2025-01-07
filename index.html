@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Parameter Display</title>
+    <!-- Google Tag Manager 代码将在后面添加 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .parameter-display {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #666;
+        }
+        .value-display {
+            font-weight: bold;
+            color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL Parameters Display</h1>
+    <div class="parameter-display">
+        <h2>Parameters:</h2>
+        <p>Key1 (Customer ID): <span id="key1-value" class="value-display">Not found</span></p>
+        <p>Key2 (Customer Email): <span id="key2-value" class="value-display">Not found</span></p>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Get and display parameters
+        document.getElementById('key1-value').textContent = getUrlParameter('key1');
+        document.getElementById('key2-value').textContent = getUrlParameter('key2');
+    </script>
+</body>
+</html>
